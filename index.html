@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="author" content="Kaltrix">
+		<meta name="keyword" content="Kaltrix, IT services, web development, app development, digital solutions">
+		<meta name="description" content="Kaltrix - Leading IT service company offering web design, web development, and app development solutions">
+		<title>Kaltrix - Innovative IT Solutions</title>
+		<link rel="stylesheet" href="ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+		<link rel="stylesheet" href="css/kaltrix.css">
+		<style>
+			body {
+				background: #1a1a1a;
+				color: #ffffff;
+			}
+			.hero {
+				background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.hero .container {
+				position: relative;
+				z-index: 1;
+			}
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url('img/hero-background.jpg') center/cover;
+				opacity: 0.2;
+				z-index: 0;
+			}
+			.card {
+				border: none;
+				border-radius: 15px;
+				background: #2d2d2d;
+				color: #ffffff;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+				transition: all 0.3s ease;
+				overflow: hidden;
+			}
+			.card:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+			}
+			.service-card {
+				background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+				color: white;
+				text-align: center;
+				padding: 2rem;
+			}
+			.service-card .icon {
+				font-size: 3rem;
+				margin-bottom: 1rem;
+			}
+			.testimonial-card {
+				background: #2d2d2d;
+				color: #ffffff;
+				padding: 2rem;
+				border-radius: 15px;
+				position: relative;
+			}
+			.testimonial-card::before {
+				content: '"';
+				font-size: 4rem;
+				color: #667eea;
+				position: absolute;
+				top: -10px;
+				left: 20px;
+			}
+			.team-card {
+				text-align: center;
+				padding: 2rem;
+			}
+			.team-card img {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				margin-bottom: 1rem;
+				border: 4px solid #667eea;
+			}
+			.stats-section {
+				background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+				color: white;
+				padding: 4rem 0;
+			}
+			.stat-item {
+				text-align: center;
+				padding: 2rem;
+			}
+			.stat-number {
+				font-size: 3rem;
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
+			.portfolio-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+			.portfolio-item {
+				position: relative;
+				border-radius: 15px;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+				transition: all 0.3s ease;
+			}
+			.portfolio-item:hover {
+				transform: scale(1.05);
+			}
+			.portfolio-item img {
+				width: 100%;
+				height: 250px;
+				object-fit: cover;
+			}
+			.portfolio-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(45, 45, 45, 0.9);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+			.portfolio-item:hover .portfolio-overlay {
+				opacity: 1;
+			}
+			.cta-section {
+				background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+				color: white;
+				padding: 4rem 0;
+				text-align: center;
+			}
+			.btn-custom {
+				background: transparent;
+				border: 2px solid #667eea;
+				border-radius: 0;
+				padding: 12px 30px;
+				color: #667eea;
+				font-weight: 500;
+				transition: all 0.3s ease;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.9rem;
+			}
+			.btn-custom:hover {
+				background: #667eea;
+				color: white;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+			}
+			.btn-outline-light {
+				background: transparent;
+				border: 2px solid #ffffff;
+				border-radius: 0;
+				padding: 12px 30px;
+				color: #ffffff;
+				font-weight: 500;
+				transition: all 0.3s ease;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.9rem;
+			}
+			.btn-outline-light:hover {
+				background: #ffffff;
+				color: #1a1a1a;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+			}
+			.btn-light {
+				background: transparent;
+				border: 2px solid #ffffff;
+				border-radius: 0;
+				padding: 12px 30px;
+				color: #ffffff;
+				font-weight: 500;
+				transition: all 0.3s ease;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.9rem;
+			}
+			.btn-light:hover {
+				background: #ffffff;
+				color: #1a1a1a;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+			}
+			.btn-primary {
+				background: transparent;
+				border: 2px solid #667eea;
+				border-radius: 0;
+				padding: 12px 30px;
+				color: #667eea;
+				font-weight: 500;
+				transition: all 0.3s ease;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.9rem;
+			}
+			.btn-primary:hover {
+				background: #667eea;
+				color: white;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+			}
+			.more {
+				color: #667eea;
+				text-decoration: none;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.8rem;
+				transition: all 0.3s ease;
+			}
+			.more:hover {
+				color: #ffffff;
+				text-decoration: none;
+			}
+			.navbar {
+				background: rgba(26, 26, 26, 0.9) !important;
+				-webkit-backdrop-filter: blur(10px);
+				backdrop-filter: blur(10px);
+			}
+			.section-title {
+				font-size: 2.5rem;
+				font-weight: bold;
+				margin-bottom: 1rem;
+				text-align: center;
+				color: #ffffff;
+			}
+			.section-lead {
+				font-size: 1.2rem;
+				text-align: center;
+				margin-bottom: 3rem;
+				color: #cccccc;
+			}
+			.bg-grey {
+				background: #1a1a1a !important;
+			}
+			.padding {
+				padding: 5rem 0;
+			}
+			.text-muted {
+				color: #cccccc !important;
+			}
+			.form-control {
+				background: #2d2d2d;
+				border: 1px solid #404040;
+				color: #ffffff;
+			}
+			.form-control:focus {
+				background: #2d2d2d;
+				border-color: #667eea;
+				color: #ffffff;
+				box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+			}
+			.form-control::placeholder {
+				color: #888888;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg main-navbar fixed-top">
+			<div class="container-fluid">			
+			  <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 1.5em; color: white;">
+			  	Kaltrix
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon">
+			    	<i class="ion-navicon"></i>
+			    </span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				  <div class="mr-auto"></div>
+			    <ul class="navbar-nav">
+			      <li class="nav-item active">
+			        <a class="nav-link smooth-link" href="#hero">Home</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#services">Services</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#about">About Us</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#portfolio">Portfolio</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link smooth-link" href="#contact">Contact</a>
+			      </li>
+			    </ul>
+			    <form class="form-inline">
+				    <a href="#contact" class="btn btn-custom smooth-link align-middle">Get Started</a>
+			    </form>
+			  </div>
+		  </div>
+		</nav>
+
+		<section class="hero" id="hero">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-12 text-center">
+						<h1 style="font-weight: bold; font-size: 4rem; color: white; margin-bottom: 2rem;">Kaltrix</h1>
+						<p class="lead" id="animated-text" style="color: white; margin-top: 20px; font-size: 2rem; margin-bottom: 3rem;">Crafting <span id="changing-text" style="font-weight: bold; transition: opacity 0.5s; opacity: 1;">app</span> development</p>
+						<div class="cta">
+							<a href="#services" class="btn btn-custom btn-lg smooth-link" style="margin-right: 1rem;">Explore Services</a>
+							<a href="#portfolio" class="btn btn-outline-light btn-lg smooth-link">View Portfolio</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="stats-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">150+</div>
+							<div class="stat-label">Projects Completed</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">50+</div>
+							<div class="stat-label">Happy Clients</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">5+</div>
+							<div class="stat-label">Years Experience</div>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="stat-item">
+							<div class="stat-number">24/7</div>
+							<div class="stat-label">Support</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding" id="services">
+			<div class="container">
+				<h2 class="section-title">Our Services</h2>
+				<p class="section-lead text-muted">We offer comprehensive IT solutions to help your business thrive in the digital world.</p>
+				<div class="row">
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="card service-card">
+							<div class="icon">
+								<i class="ion-paintbrush"></i>
+							</div>
+							<h3 class="card-title">Web Design</h3>
+							<p class="card-text">
+								We create stunning, responsive websites that captivate your audience and drive conversions. Our designs are modern, user-friendly, and optimized for all devices.
+							</p>
+							<a href="#" class="btn btn-light">Learn More</a>
+						</div>
+					</div>
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="card service-card">
+							<div class="icon">
+								<i class="ion-code"></i>
+							</div>
+							<h3 class="card-title">Web Development</h3>
+							<p class="card-text">
+								We build robust, scalable web applications using cutting-edge technologies. From e-commerce platforms to enterprise solutions, we deliver excellence.
+							</p>
+							<a href="#" class="btn btn-light">Learn More</a>
+						</div>
+					</div>
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="card service-card">
+							<div class="icon">
+								<i class="ion-iphone"></i>
+							</div>
+							<h3 class="card-title">App Development</h3>
+							<p class="card-text">
+								We develop innovative mobile applications for iOS and Android platforms. Our apps are feature-rich, intuitive, and deliver exceptional user experiences.
+							</p>
+							<a href="#" class="btn btn-light">Learn More</a>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="card service-card">
+							<div class="icon">
+								<i class="ion-cloud"></i>
+							</div>
+							<h3 class="card-title">Cloud Solutions</h3>
+							<p class="card-text">
+								We provide comprehensive cloud infrastructure and migration services to help your business scale efficiently and reduce operational costs.
+							</p>
+							<a href="#" class="btn btn-light">Learn More</a>
+						</div>
+					</div>
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="card service-card">
+							<div class="icon">
+								<i class="ion-settings"></i>
+							</div>
+							<h3 class="card-title">IT Consulting</h3>
+							<p class="card-text">
+								Our expert consultants help you make informed technology decisions and develop strategic IT roadmaps for your business growth.
+							</p>
+							<a href="#" class="btn btn-light">Learn More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding bg-grey" id="about">
+			<div class="container">
+				<h2 class="section-title">About Us</h2>
+				<p class="section-lead text-muted">Kaltrix is a leading IT service company dedicated to providing innovative solutions and delivering successful projects.</p>
+				<div class="row">
+					<div class="col-12 col-md-6">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Our Mission</h3>
+								<p class="card-text">
+									At Kaltrix, we specialize in web design, web development, and app development. Our team of experts is committed to creating high-quality, scalable, and user-friendly digital solutions that meet the unique needs of our clients. With a focus on innovation and excellence, we have successfully completed numerous projects, helping businesses achieve their digital goals.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Our Vision</h3>
+								<p class="card-text">
+									Our mission is to empower businesses with cutting-edge technology and creative design, ensuring they stay ahead in the digital landscape. We pride ourselves on our collaborative approach, working closely with clients to understand their vision and deliver results that exceed expectations.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-4">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Why Choose Kaltrix?</h3>
+								<div class="row">
+									<div class="col-md-4">
+										<h5><i class="ion-checkmark-circled text-success"></i> Innovation</h5>
+										<p>We stay ahead of technology trends to deliver cutting-edge solutions.</p>
+									</div>
+									<div class="col-md-4">
+										<h5><i class="ion-checkmark-circled text-success"></i> Quality</h5>
+										<p>We maintain the highest standards of quality in every project we deliver.</p>
+									</div>
+									<div class="col-md-4">
+										<h5><i class="ion-checkmark-circled text-success"></i> Support</h5>
+										<p>We provide 24/7 support to ensure your systems run smoothly.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding" id="portfolio">
+			<div class="container">
+				<h2 class="section-title">Our Portfolio</h2>
+				<p class="section-lead text-muted">Explore our latest projects and see how we've helped businesses achieve their digital goals.</p>
+				<div class="portfolio-grid">
+					<div class="portfolio-item">
+						<img src="img/news/img01.jpg" alt="E-commerce Platform">
+						<div class="portfolio-overlay">
+							<div class="text-center">
+								<h4>E-commerce Platform</h4>
+								<p>Modern online store with advanced features</p>
+							</div>
+						</div>
+					</div>
+					<div class="portfolio-item">
+						<img src="img/news/img02.jpg" alt="Mobile App">
+						<div class="portfolio-overlay">
+							<div class="text-center">
+								<h4>RecipeMe App</h4>
+								<p>Cross-platform recipe management app</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding" id="testimonials">
+			<div class="container">
+				<h2 class="section-title">What Our Clients Say</h2>
+				<p class="section-lead text-muted">Don't just take our word for it - hear from our satisfied clients.</p>
+				<div class="row">
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="testimonial-card">
+							<p>"Kaltrix delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and commitment to quality is outstanding."</p>
+							<div class="mt-3">
+								<strong>Sarah Wilson</strong><br>
+								<small class="text-muted">CEO, Fashion Store</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="testimonial-card">
+							<p>"The mobile app Kaltrix developed for us has been a game-changer. User engagement has increased by 300% since launch."</p>
+							<div class="mt-3">
+								<strong>David Brown</strong><br>
+								<small class="text-muted">Founder, Tech Startup</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-4 col-sm-12 mb-4">
+						<div class="testimonial-card">
+							<p>"Professional, reliable, and innovative. Kaltrix has been our trusted technology partner for over 3 years."</p>
+							<div class="mt-3">
+								<strong>Lisa Chen</strong><br>
+								<small class="text-muted">CTO, Healthcare Corp</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="cta-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<h2 style="margin-bottom: 2rem;">Ready to Start Your Project?</h2>
+						<p style="font-size: 1.2rem; margin-bottom: 3rem;">Let's discuss how we can help bring your vision to life.</p>
+						<a href="#contact" class="btn btn-light btn-lg smooth-link">Get In Touch</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="padding bg-grey" id="contact">
+			<div class="container">
+				<h2 class="section-title text-center">Contact Us</h2>
+				<p class="section-lead text-center text-muted">Ready to transform your business? Let's start a conversation.</p>
+				<div class="section-body">				
+					<div class="row col-spacing">
+						<div class="col-12 col-md-5">
+							<div class="card">
+								<div class="card-body">
+									<h4>Get In Touch</h4>
+									<p class="contact-text">We're here to help you succeed. Reach out to us for any questions or to discuss your project.</p>
+									<ul class="contact-icon">
+										<li><i class="ion ion-ios-telephone"></i> <div>+91 94951 14722</div></li>
+										<li><i class="ion ion-ios-email"></i> <div>hello@kaltrix.com</div></li>
+										<li><i class="ion ion-ios-location"></i> <div>Bangalore, Karnataka, India</div></li>
+									</ul>
+									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497699.9973874144!2d77.35074483611675!3d12.95384772557775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" style="border:none; border-radius: 10px; width: 100%; height: 200px;" class="maps"></iframe>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-7">
+							<div class="card">
+								<div class="card-body">
+									<h4>Send Us a Message</h4>
+									<form class="contact row" id="contact-form">
+										<div class="form-group col-6">
+											<input type="text" class="form-control" placeholder="Your Name" name="name" required="">
+										</div>
+										<div class="form-group col-6">
+											<input type="email" class="form-control" placeholder="Your Email" name="email" required="">
+										</div>
+										<div class="form-group col-12">
+											<input type="text" class="form-control" placeholder="Subject" name="subject" required="">
+										</div>
+										<div class="form-group col-12">
+											<textarea class="form-control" placeholder="Your Message" name="message" rows="5" required=""></textarea>
+										</div>
+										<div class="form-group col-12 mt-2">
+											<button class="btn btn-custom btn-lg">
+												Send Message
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer style="background: #2c3e50; color: white; padding: 3rem 0;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<figure>
+							<span style="font-weight: bold; font-size: 1.5em; color: white;">Kaltrix</span>
+						</figure>
+						<p class="mt-3">Empowering businesses with innovative technology solutions for a digital future.</p>
+					</div>
+					<div class="col-md-4">
+						<h5>Quick Links</h5>
+						<ul class="list-unstyled">
+							<li><a href="#services" class="text-light">Services</a></li>
+							<li><a href="#portfolio" class="text-light">Portfolio</a></li>
+							<li><a href="#about" class="text-light">About Us</a></li>
+							<li><a href="#contact" class="text-light">Contact</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h5>Connect With Us</h5>
+						<div class="social-links">
+							<a href="#" class="text-light mr-3"><i class="ion-social-facebook"></i></a>
+							<a href="#" class="text-light mr-3"><i class="ion-social-twitter"></i></a>
+							<a href="#" class="text-light mr-3"><i class="ion-social-linkedin"></i></a>
+							<a href="#" class="text-light"><i class="ion-social-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+				<hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+				<div class="row">
+					<div class="col-12 text-center">
+						<p>&copy; 2024 Kaltrix. All rights reserved.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/jquery.easeScroll.js"></script>
+		<script src="sweetalert/dist/sweetalert.min.js"></script>
+		<script src="js/kaltrix.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const texts = ['APP', 'WEB'];
+				let index = 0;
+				const element = document.getElementById('changing-text');
+				setInterval(function() {
+					element.style.opacity = 0;
+					setTimeout(function() {
+						element.textContent = texts[index];
+						element.style.opacity = 1;
+						index = (index + 1) % texts.length;
+					}, 500);
+				}, 2000);
+
+				// Animate statistics numbers
+				function animateNumber(element, target, suffix = '') {
+					let current = 0;
+					const increment = target / 100;
+					const timer = setInterval(() => {
+						current += increment;
+						if (current >= target) {
+							current = target;
+							clearInterval(timer);
+						}
+						element.textContent = Math.floor(current) + suffix;
+					}, 20);
+				}
+
+				// Intersection Observer for statistics animation
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const statNumbers = entry.target.querySelectorAll('.stat-number');
+							statNumbers.forEach(stat => {
+								const text = stat.textContent;
+								const number = parseInt(text.replace(/\D/g, ''));
+								const suffix = text.replace(/\d/g, '');
+								animateNumber(stat, number, suffix);
+							});
+							observer.unobserve(entry.target);
+						}
+					});
+				}, { threshold: 0.5 });
+
+				// Observe the stats section
+				const statsSection = document.querySelector('.stats-section');
+				if (statsSection) {
+					observer.observe(statsSection);
+				}
+
+				// Add scroll animations
+				window.addEventListener('scroll', function() {
+					const cards = document.querySelectorAll('.card');
+					cards.forEach(card => {
+						const cardTop = card.getBoundingClientRect().top;
+						if (cardTop < window.innerHeight - 100) {
+							card.style.opacity = '1';
+							card.style.transform = 'translateY(0)';
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
